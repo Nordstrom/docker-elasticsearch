@@ -1,4 +1,4 @@
-FROM elasticsearch:5.1
+FROM elasticsearch:5.2.0
 
 ARG PROXY_HOST
 ARG PROXY_PORT

@@ -1,6 +1,6 @@
 container_name     := elasticsearch
 container_registry := quay.io/nordstrom
-container_release  := 5.1
+container_release  := 5.2.0
 
 .PHONY: build/image tag/image push/image
 
