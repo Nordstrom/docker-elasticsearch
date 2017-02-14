@@ -1,0 +1,9 @@
+FROM elasticsearch:5.2.0
+
+ARG PROXY_HOST
+ARG PROXY_PORT
+
+RUN export ES_JAVA_OPTS="-DproxyHost=$PROXY_HOST -DproxyPort=$PROXY_PORT" \
+ && bin/elasticsearch-plugin install com.floragunn:search-guard-5:5.2.0-10 \
+ && bin/elasticsearch-plugin install discovery-ec2 \
+ && bin/elasticsearch-plugin install repository-s3

@@ -1,17 +1,17 @@
-container_name     := elasticsearch
-container_registry := quay.io/nordstrom
-container_release  := 5.2.0
+image_name     ?= elasticsearch
+image_registry := quay.io/nordstrom
+image_release  := 5.2.0
 
 .PHONY: build/image tag/image push/image
 
 build/image:
 	docker build \
-		--build-arg "PROXY_HOST=$(PROXY_HOST)" \
-		--build-arg "PROXY_PORT=$(PROXY_PORT)" \
-		--tag $(container_name) .
+		--build-arg "PROXY_HOST=$(proxy_host)" \
+		--build-arg "PROXY_PORT=$(proxy_port)" \
+		--tag $(image_name) $(image_name)/
 
 tag/image: build/image
-	docker tag $(container_name) $(container_registry)/$(container_name):$(container_release)
+	docker tag $(image_name) $(image_registry)/$(image_name):$(image_release)
 
 push/image: tag/image
-	docker push $(container_registry)/$(container_name):$(container_release)
+	docker push $(image_registry)/$(image_name):$(image_release)
