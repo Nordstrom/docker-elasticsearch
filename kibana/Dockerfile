@@ -1,3 +1,3 @@
 FROM kibana:5.2.2
 
-RUN kibana-plugin install x-pack
+RUN gosu kibana /usr/share/kibana/bin/kibana-plugin install x-pack
