@@ -9,5 +9,5 @@ RUN export ES_JAVA_OPTS="-Dhttps.proxyHost=$PROXY_HOST -Dhttps.proxyPort=$PROXY_
 
 ADD elasticsearch.in.sh bin/
 RUN sed -i 's/^-Xms/#-Xms/' ./config/jvm.options \
- && sed -i 's/^-Xmx/#-Xmx/' ./config/jvm.options
-
+ && sed -i 's/^-Xmx/#-Xmx/' ./config/jvm.options \
+ && sed -i 's/^/#/' ./config/x-pack/log4j2.properties
