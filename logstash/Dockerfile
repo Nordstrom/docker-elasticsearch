@@ -1,4 +1,4 @@
-FROM logstash:5.2.2
+FROM logstash:5.3
 
 # can't build via proxy :(
 # - https://github.com/elastic/logstash/issues/6619
