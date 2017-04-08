@@ -1,4 +1,4 @@
-FROM logstash:5.3
+FROM docker.elastic.co/logstash/logstash:5.3.0
 
 # can't build via proxy :(
 # - https://github.com/elastic/logstash/issues/6619
@@ -7,7 +7,7 @@ FROM logstash:5.3
 #ARG PROXY_PORT
 #RUN export JRUBY_OPTS="-J-Dhttp.proxyHost=$PROXY_HOST -J-Dhttp.proxyPort=$PROXY_PORT" \
 # && logstash-plugin install logstash-output-influxdb \
-# && rm -rf /root/.m2
+# && rm -rf ~/.m2
 
 RUN logstash-plugin install logstash-output-influxdb \
- && rm -rf /root/.m2
+ && rm -rf ~/.m2
