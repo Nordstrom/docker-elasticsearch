@@ -1,6 +1,6 @@
 image_name     ?= elasticsearch
 image_registry := quay.io/nordstrom
-image_release  := 5.3.0
+image_release  := 5.3.1
 
 .PHONY: build/image tag/image push/image
 
