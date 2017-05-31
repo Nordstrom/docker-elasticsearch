@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:5.3.2
+FROM docker.elastic.co/elasticsearch/elasticsearch:5.4.0
 
 ARG PROXY_HOST
 ARG PROXY_PORT
