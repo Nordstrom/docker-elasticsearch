@@ -1,8 +1,8 @@
 #!/bin/bash
 
-mem_bytes=$(free -b | awk '/^Mem:/{print $2}')
+mbytes=$(free -m | awk '/^Mem:/{print $2}')
 max_mbytes=$(( 31 * 1024 ))
-heap_mbytes=$(( $mem_bytes / 2 / 1024 / 1024 ))
+heap_mbytes=$(( $mbytes / 2 ))
 heap_mbytes=$(( $heap_mbytes > $max_mbytes ? $max_mbytes : $heap_mbytes ))
 
 ES_CLASSPATH="$ES_HOME/lib/*"
