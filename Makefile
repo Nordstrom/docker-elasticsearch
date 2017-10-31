@@ -1,6 +1,6 @@
 image_name     ?= elasticsearch
 image_registry := quay.io/nordstrom
-image_release  := 5.5.3
+image_release  := 5.6.3
 
 build:
 	docker build \
