@@ -7,7 +7,8 @@ RUN export ES_JAVA_OPTS="-Dhttps.proxyHost=$PROXY_HOST -Dhttps.proxyPort=$PROXY_
  && bin/elasticsearch-plugin install discovery-ec2 \
  && bin/elasticsearch-plugin install repository-s3
 
-ADD elasticsearch.in.sh bin/
+ADD elasticsearch.in.sh ./config/
 RUN sed -i 's/^-Xms/#-Xms/' ./config/jvm.options \
  && sed -i 's/^-Xmx/#-Xmx/' ./config/jvm.options \
- && sed -i 's/^/#/' ./config/x-pack/log4j2.properties
+ && sed -i 's/^/#/' ./config/x-pack/log4j2.properties \
+ && echo ". \$ES_HOME/config/elasticsearch.in.sh" >> ./bin/elasticsearch-env
