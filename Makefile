@@ -1,15 +1,27 @@
-image_name     ?= elasticsearch
 image_registry := quay.io/nordstrom
-image_release  := 6.1.1 
+image_release := 6.1.1
 
-build:
-	docker build \
-		--build-arg "PROXY_HOST=$(proxy_host)" \
-		--build-arg "PROXY_PORT=$(proxy_port)" \
-		--tag $(image_name) $(image_name)/
+elasticsearch_image = $(image_registry)/elasticsearch:$(image_release)
+kibana_image = $(image_registry)/kibana:$(image_release)
 
-tag: build
-	docker tag $(image_name) $(image_registry)/$(image_name):$(image_release)
+check-var = $(if $(strip $($1)),,$(error var for "$1" is empty!))
 
-push: tag
-	docker push $(image_registry)/$(image_name):$(image_release)
+elasticsearch/build:
+	docker build --tag elasticsearch elasticsearch/
+
+elasticsearch/push:
+	$(call check-var,version)
+	docker tag elasticsearch $(elasticsearch_image)
+	docker push $(elasticsearch_image)
+	docker tag elasticsearch $(elasticsearch_image)-$(version)
+	docker push $(elasticsearch_image)-$(version)
+
+kibana/build:
+	docker build --tag kibana kibana/
+
+kibana/push:
+	$(call check-var,version)
+	docker tag kibana $(kibana_image)
+	docker push $(kibana_image)
+	docker tag kibana $(kibana_image)-$(version)
+	docker push $(kibana_image)-$(version)
