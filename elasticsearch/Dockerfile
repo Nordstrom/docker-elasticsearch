@@ -1,10 +1,6 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:6.1.1
 
-ARG PROXY_HOST
-ARG PROXY_PORT
-
-RUN export ES_JAVA_OPTS="-Dhttps.proxyHost=$PROXY_HOST -Dhttps.proxyPort=$PROXY_PORT" \
- && bin/elasticsearch-plugin install discovery-ec2 \
+RUN bin/elasticsearch-plugin install discovery-ec2 \
  && bin/elasticsearch-plugin install repository-s3
 
 ADD elasticsearch.in.sh ./config/
