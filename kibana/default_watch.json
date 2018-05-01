@@ -1,0 +1,45 @@
+{
+  "trigger": {
+    "schedule": {
+      "interval": "30m"
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "body": {
+          "size": 0,
+          "query" : {
+            "match_all": {}
+          }
+        },
+        "indices": ["my-index*"]
+      }
+    }
+  },
+  "condition": {
+    "compare": {
+      "ctx.payload.hits.total": {
+        "gte": 10
+      }
+    }},
+  "actions": {
+    "notify-slack": {
+      "throttle_period" : "5m",
+      "slack" : {
+        "message" : {
+          "from" : "watcher",
+          "to" : [ "#my-slack-channel" ],
+          "text": "REQUIRED FIELD, don't leave blank",
+          "attachments" : [
+            {
+              "title" : "Errors Found",
+              "text" : "Encountered  {{ctx.payload.hits.total}} errors in the last 5 minutes (facepalm)",
+              "color" : "danger"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
