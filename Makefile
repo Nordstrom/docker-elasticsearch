@@ -1,5 +1,5 @@
 image_registry := quay.io/nordstrom
-image_release := 6.1.1
+image_release := 6.2.4
 
 elasticsearch_image = $(image_registry)/elasticsearch:$(image_release)
 kibana_image = $(image_registry)/kibana:$(image_release)

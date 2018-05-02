@@ -30,7 +30,7 @@
         "message" : {
           "from" : "watcher",
           "to" : [ "#my-slack-channel" ],
-          "text": "REQUIRED FIELD, don't leave blank",
+          "text": "Slack Text Message",
           "attachments" : [
             {
               "title" : "Errors Found",
