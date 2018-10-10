@@ -1,10 +1,10 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.2.4
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.4.1
 
-RUN bin/elasticsearch-plugin install discovery-ec2 \
- && bin/elasticsearch-plugin install repository-s3
+RUN bin/elasticsearch-plugin install --batch discovery-ec2 \
+ && bin/elasticsearch-plugin install --batch repository-s3
 
 ADD elasticsearch.in.sh ./config/
 RUN sed -i 's/^-Xms/#-Xms/' ./config/jvm.options \
  && sed -i 's/^-Xmx/#-Xmx/' ./config/jvm.options \
- && sed -i 's/^/#/' ./config/x-pack/log4j2.properties \
+ && sed -i 's/^/#/' ./config/log4j2.properties \
  && echo ". \$ES_HOME/config/elasticsearch.in.sh" >> ./bin/elasticsearch-env
