@@ -1,5 +1,5 @@
 image_registry := quay.io/nordstrom
-image_release := 6.4.1
+image_release := 6.4.2
 elasticsearch_image = $(image_registry)/elasticsearch:$(image_release)
 kibana_image = $(image_registry)/kibana:$(image_release)
 check-var = $(if $(strip $($1)),,$(error var for "$1" is empty!))
