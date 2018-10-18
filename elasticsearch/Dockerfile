@@ -6,5 +6,4 @@ RUN bin/elasticsearch-plugin install --batch discovery-ec2 \
 ADD elasticsearch.in.sh ./config/
 RUN sed -i 's/^-Xms/#-Xms/' ./config/jvm.options \
  && sed -i 's/^-Xmx/#-Xmx/' ./config/jvm.options \
- && sed -i 's/^/#/' ./config/log4j2.properties \
  && echo ". \$ES_HOME/config/elasticsearch.in.sh" >> ./bin/elasticsearch-env
